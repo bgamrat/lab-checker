@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CSCI107N - Lab Checker</title>
+        <link href="css/style.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+        <script src="ui/controller.js" type="module" defer></script>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1>CSCI107N - Lab Checker</h1>
+            </header>
+            <article>
+                <h2>Action</h2>
+                <section class="row my-3" id="results">
+                    <h3>Results</h3>
+                    <div>
+                        <div class="alert alert-primary" id="alertWarning" role="alert">
+                            Select a file
+                        </div>
+                        <div class="d-none alert alert-success" id="alertSuccess" role="alert">
+                        </div>
+                        <div class="d-none alert alert-danger" id="alertError" role="alert">
+                        </div>
+                        <div class="d-none alert alert-warning" id="alertWarning" role="alert">
+                        </div>
+                    </div>
+                </section>
+                <section class="row my-3" id="load">
+                    <h3>Load</h3>
+                    <div>
+                        <label for="fileInput" class="form-label">File input</label>
+                        <input type="file" class="form-control" id="fileInput" accept=".html">
+                    </div>
+                </section>
+                <section class="d-none row my-3" id="view">
+                    <h3>View</h3>
+                    <p>
+                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#uploadedFileContent" aria-expanded="false" aria-controls="uploadedFileContent">
+                            View uploaded file content
+                        </button>
+                    </p>
+                    <div>
+                        <div class="collapse collapse-horizontal" id="uploadedFileContent">
+                            <div class="card card-body font-monospace" id="fileContent" style="width: 100%;">
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+            </article>
+            <footer>
+                <p>&copy; Betsy Gamrat <time datetime="2022">2022</time>-</p>
+            </footer>
+        </div>
+    </body>
+</html>
