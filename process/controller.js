@@ -1,6 +1,7 @@
 "use strict";
 
 import { check } from './check.js';
+import { hints } from './hints.js';
 import { clearAlerts,displayError } from '../common/ui.js';
 
 const contentEl = document.getElementById('fileContent');
@@ -13,7 +14,10 @@ const previewFile = () => {
 
     reader.addEventListener("load", () => {
         contentEl.innerText = reader.result;
-        check(reader.result);
+        const lab = check(reader.result);
+        if (lab) {
+            hints(lab);
+        }
     }, false);
 
     if (file) {

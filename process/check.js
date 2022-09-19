@@ -1,5 +1,5 @@
 "use strict";
-import { clearAlerts, displaySuccess, displayError, showView } from '../common/ui.js';
+import { clearAlerts, displaySuccess, displayError, displayResults } from '../common/ui.js';
 
 import { labs } from '../labs/csci107n.js';
 
@@ -14,12 +14,11 @@ const handlePresents = (n, frag) => {
         }
     }
     if (count < n.count) {
-        displayError(`Missing ${n.count-count} expected elements <${missing.join('>, <')}>`);
+        displayError(`Missing ${n.count - count} expected elements <${missing.join('>, <')}>`);
         return false;
     }
     return true;
 };
-
 
 const traverse = (doc, tree, frag) => {
 
@@ -80,7 +79,6 @@ const traverse = (doc, tree, frag) => {
         expected = 1;
     }
     return true;
-
 };
 
 const getLabNumber = (str) => {
@@ -90,22 +88,22 @@ const getLabNumber = (str) => {
         return found[0].replace(' ', '').toLowerCase();
     }
     return null;
-}
+};
 
 const check = (str) => {
 
     clearAlerts();
-    showView();
+    displayResults();
     const lab = getLabNumber(str);
 
     if (lab) {
         if (!labs[lab]) {
             displayError(lab + " not found");
-            return;
+            return null;
         }
     } else {
         displayError("Missing lab identifier (add 'Lab #' as a <title> or in a <!-- comment -->)");
-        return;
+        return null;
     }
 
     const parser = new DOMParser();
@@ -115,10 +113,12 @@ const check = (str) => {
     if (errorNode) {
         displayError(errorNode);
     } else {
+        console.log(doc);
         if (traverse(doc, labs[lab], doc)) {
             displaySuccess("Passed all checks");
         }
     }
-}
+    return lab;
+};
 
 export { check }

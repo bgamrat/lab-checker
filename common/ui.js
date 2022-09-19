@@ -1,12 +1,13 @@
 "use strict";
 
 const alerts = {
+    prmpt: document.getElementById("alertPrompt"),
     success: document.getElementById("alertSuccess"),
     error: document.getElementById("alertError"),
     warning: document.getElementById("alertWarning")
 };
 
-const view = document.getElementById("view");
+const results = document.getElementById("results");
 
 const clearAlerts = () => {
     // hide all the alerts
@@ -39,8 +40,8 @@ const displayWarning = (msg = "") => {
     _display(alerts.warning, msg);
 }
 
-const showView = () => {
-    view.classList.remove("d-none");
+const displayResults = () => {
+    results.classList.remove("d-none");
 }
 
-export { clearAlerts, displaySuccess, displayError, displayWarning, showView };
+export { clearAlerts, displaySuccess, displayError, displayWarning, displayResults };
