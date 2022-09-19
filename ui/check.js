@@ -3,50 +3,85 @@ import { clearAlerts, displaySuccess, displayError, showView } from '../common/u
 
 import { labs } from '../labs/csci107n.js';
 
+const handlePresents = (n, frag) => {
+    let count = 0;
+    let missing = [];
+    for (const nn of n.elements) {
+        if (frag.querySelector(nn) !== null) {
+            count++;
+        } else {
+            missing.push(nn);
+        }
+    }
+    if (count < n.count) {
+        displayError(`Missing ${n.count-count} expected elements <${missing.join('>, <')}>`);
+        return false;
+    }
+    return true;
+};
+
+
 const traverse = (doc, tree, frag) => {
-    let expected = 0;
+
+    let expected = 1;
     for (let node in tree) {
         let n = tree[node];
         if (["required"].includes(node)) {
-            if (n.required) {
-                expected = 1;
+            if (!n.required) {
+                expected = 0;
+            }
+            continue;
+        }
+        if (node === "present") {
+            if (!handlePresents(n, frag)) {
+                return false;
             }
             continue;
         }
         if (n instanceof Array) {
             expected = 0;
             for (let nn of n) {
-                if (nn === null || nn.required) {
+                if (nn === null || (typeof nn === "object" && !nn.required)) {
                     expected++;
                 }
             }
         } else {
-            if (n.required) {
-                expected = 1;
+            if (typeof n !== "object" && !n.required) {
+                expected = 0;
             }
         }
-        let qs = frag.querySelectorAll(node);
+
+        let querySelector = node;
+        if (frag.parentElement !== null) {
+            querySelector = frag.tagName + " > " + node;
+            frag = frag.parentElement;
+        }
+        let qs = frag.querySelectorAll(querySelector);
         if (qs.length < expected) {
             displayError(`Missing expected element <${node}>`);
             return false;
-        } else {
+        } else if (qs.length !== 0) {
+            console.log("not zero");
+            console.log(qs, qs.length, expected, n);
             if (n instanceof Array) {
                 let q = 0;
+                console.log("loop")
                 for (let nn of n) {
-                    if (qs[q].children.length > 0) {
+                    console.log(nn, q, qs[q]);
+                    if (nn !== null && qs[q].children.length > 0) {
                         if (!traverse(doc, nn, qs[q])) {
                             return false;
                         }
                     }
                     q++;
                 }
-            } else if (qs.length > 0) {
+            } else if (n !== null && qs.length > 0) {
                 if (!traverse(doc, n, qs[0])) {
                     return false;
                 }
             }
         }
-        expected = 0;
+        expected = 1;
     }
     return true;
 
@@ -62,6 +97,7 @@ const getLabNumber = (str) => {
 }
 
 const check = (str) => {
+
     clearAlerts();
     showView();
     const lab = getLabNumber(str);
@@ -75,6 +111,7 @@ const check = (str) => {
         displayError("Missing lab identifier (add 'Lab #' as a <title> or in a <!-- comment -->)");
         return;
     }
+
     const parser = new DOMParser();
     const doc = parser.parseFromString(str, "text/html");
     const errorNode = doc.querySelector("parsererror");

@@ -1,48 +1,9 @@
+import { lab4 } from './lab4.js';
+import { lab5 } from './lab5.js';
 
 const labs = {
-    "lab4": {
-        h1: {
-            required: true
-        },
-        article: {
-            required: true,
-            h2: {
-                required: true
-            },
-            section: [{
-                    required: true,
-                    h3: {
-                        required: true
-                    },
-                    ul: {
-                        required: true,
-                        li: Array(3).fill(null)
-                    }
-                },
-                {
-                    required: true,
-                    h3: {
-                        required: true
-                    },
-                    ol: {
-                        required: true,
-                        li: Array(3).fill(null)
-                    }
-                },
-                {
-                    required: true,
-                    h3: {
-                        required: true
-                    },
-                    dl: {
-                        required: true,
-                        dt: Array(3).fill(null),
-                        dd: Array(3).fill(null)
-                    }
-                }
-            ]
-        }
-    }
+  lab4: lab4,
+  lab5: lab5
 };
 
 export { labs };
