@@ -61,13 +61,9 @@ const traverse = (doc, tree, frag) => {
             displayError(`Missing expected element <${node}>`);
             return false;
         } else if (qs.length !== 0) {
-            console.log("not zero");
-            console.log(qs, qs.length, expected, n);
             if (n instanceof Array) {
                 let q = 0;
-                console.log("loop")
                 for (let nn of n) {
-                    console.log(nn, q, qs[q]);
                     if (nn !== null && qs[q].children.length > 0) {
                         if (!traverse(doc, nn, qs[q])) {
                             return false;
