@@ -2,26 +2,30 @@
 
 import { check } from './check.js';
 import { hints } from './hints.js';
-import { clearAlerts,displayError } from '../common/ui.js';
+import { clearUI, displayError } from '../common/ui.js';
 
 const contentEl = document.getElementById('fileContent');
 const fileEl = document.getElementById('fileInput');
+const labIdEl = document.getElementById('labIdInput');
 
-const previewFile = () => {
+const loadFile = () => {
+
+    clearUI();
 
     const [file] = fileEl.files;
     const reader = new FileReader();
 
     reader.addEventListener("load", () => {
         contentEl.innerText = reader.result;
-        const lab = check(reader.result);
+        // gives the text input value precedence over the filename
+        const labId = labIdEl.value.trim() + file.name;
+        const lab = check(labId, reader.result);
         if (lab) {
             hints(lab);
         }
     }, false);
 
     if (file) {
-        clearAlerts();
         if (file.type === "text/html") {
             reader.readAsText(file);
         } else {
@@ -30,4 +34,5 @@ const previewFile = () => {
     }
 }
 
-fileEl.addEventListener("change", previewFile);
+fileEl.addEventListener("change", loadFile);
+labIdEl.addEventListener("change", loadFile);

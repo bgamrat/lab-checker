@@ -16,16 +16,22 @@
                 <section class="row my-3" id="load">
                     <h2>Upload</h2>
                     <p>
-                        Be sure the text 'lab #' is somewhere in the file (# indicates the lab number).
+                        Be sure the text 'lab #' is somewhere in the file, the filename or the text box to the right of the file input (# indicates the lab number).
                         This tool <em class="text-danger">does not <a href="https://validator.w3.org/" target="validator">validate</a></em>.
                     </p>
                     <div>
-                        <label for="fileInput" class="form-label">File input</label>
-                        <input type="file" class="form-control" id="fileInput" accept=".html">
+                        <div class="row">
+                            <div class="col">
+                                <input type="file" class="form-control" id="fileInput" accept=".html">
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" id="labIdInput" placeholder="Lab #" value="Lab " pattern="Lab \d+">
+                            </div>
+                        </div>
                     </div>
                 </section>
                 <section class="d-none my-3" id="results">
-                    <h2>Results</h2>
+                    <h2>Results <small id="labIdHeading" class="text-secondary">(checked against requirements for <span id="labId"></span>)</small></h2>
                     <div class="row">
                         <div class="col">
                             <div class="alert alert-primary" id="alertPrompt" role="alert">

@@ -1,5 +1,5 @@
 "use strict";
-import { clearAlerts, displaySuccess, displayError, displayResults } from '../common/ui.js';
+import { clearUI, displaySuccess, displayError, displayResults, displayLabId } from '../common/ui.js';
 
 import { labs } from '../labs/csci107n.js';
 
@@ -51,10 +51,6 @@ const traverse = (doc, tree, frag) => {
         }
 
         let querySelector = node;
-        if (frag.parentElement !== null) {
-            querySelector = frag.tagName + " > " + node;
-            frag = frag.parentElement;
-        }
         let qs = frag.querySelectorAll(querySelector);
         if (qs.length < expected) {
             displayError(`Missing expected element <${node}>`);
@@ -90,11 +86,11 @@ const getLabNumber = (str) => {
     return null;
 };
 
-const check = (str) => {
+const check = (filename,str) => {
 
-    clearAlerts();
+    clearUI();
     displayResults();
-    const lab = getLabNumber(str);
+    const lab = getLabNumber(filename) || getLabNumber(str);
 
     if (lab) {
         if (!labs[lab]) {
@@ -105,6 +101,7 @@ const check = (str) => {
         displayError("Missing lab identifier (add 'Lab #' as a <title> or in a <!-- comment -->)");
         return null;
     }
+    displayLabId("Lab "+lab.replace(/\D+/,''));
 
     const parser = new DOMParser();
     const doc = parser.parseFromString(str, "text/html");

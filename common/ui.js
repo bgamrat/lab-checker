@@ -8,12 +8,17 @@ const alerts = {
 };
 
 const results = document.getElementById("results");
+const labIdHeading = document.getElementById("labIdHeading");
+const labId = document.getElementById("labId");
 
-const clearAlerts = () => {
+const clearUI = () => {
     // hide all the alerts
     for (let a in alerts) {
         alerts[a].classList.add("d-none");
     }
+    results.classList.add("d-none");
+    labIdHeading.classList.add("d-none");
+    labId.textContent = "";
 };
 
 const _display = (el = null, msg = "") => {
@@ -44,4 +49,9 @@ const displayResults = () => {
     results.classList.remove("d-none");
 }
 
-export { clearAlerts, displaySuccess, displayError, displayWarning, displayResults };
+const displayLabId = (id) => {
+    labIdHeading.classList.remove("d-none");
+    labId.textContent = id;
+}
+
+export { clearUI, displaySuccess, displayError, displayWarning, displayResults, displayLabId };
