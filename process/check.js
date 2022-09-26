@@ -51,7 +51,12 @@ const traverse = (doc, tree, frag) => {
         }
 
         let querySelector = node;
-        let qs = frag.querySelectorAll(querySelector);
+	let doc = frag;
+	if (doc.parentElement !== null) {
+		querySelector = frag.tagName + '>' + querySelector;
+		doc = frag.parentElement;
+	}
+        let qs = doc.querySelectorAll(querySelector);
         if (qs.length < expected) {
             displayError(`Missing expected element <${node}>`);
             return false;
@@ -110,7 +115,6 @@ const check = (filename,str) => {
     if (errorNode) {
         displayError(errorNode);
     } else {
-        console.log(doc);
         if (traverse(doc, labs[lab], doc)) {
             displaySuccess("Passed all checks");
         }

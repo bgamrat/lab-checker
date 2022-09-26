@@ -4,20 +4,23 @@ const lab6 = {
         title: null
     },
     body: {
+	a: null,
         header: {
-            nav: {
-                ul: {
-                    li: Array(5).fill({a: null})
-                }
-            }
+		h1: null,
+		img: null,
+		a: null
         },
         main: {
             article: {
-                h1: null,
-                section: {
-                    h2: null
+                h2: null,
+                nav: {
+                    ul: {
+                        li: Array(5).fill({a: null})
+                    }
                 },
-                aside: null
+                section: Array(5).fill({h3: null, p:null}),
+                aside: null,
+		a: null
             }
         },
         footer: {
