@@ -82,7 +82,7 @@ const traverse = (doc, tree, frag) => {
     return true;
 };
 
-const getLabNumber = (str) => {
+const getLabNumber = str => {
     const re = /lab\s*\d+/im;
     const found = str.match(re);
     if (found) {

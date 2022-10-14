@@ -17,7 +17,6 @@
                     <h2>Upload</h2>
                     <p>
                         Be sure the text 'lab #' is somewhere in the file, the filename or the text box to the right of the file input (# indicates the lab number).
-                        This tool <em class="text-danger">does not <a href="https://validator.w3.org/" target="validator">validate</a></em>.
                     </p>
                     <div>
                         <div class="row">
@@ -32,6 +31,18 @@
                 </section>
                 <section class="d-none my-3" id="results">
                     <h2>Results <small id="labIdHeading" class="text-secondary">(checked against requirements for <span id="labId"></span>)</small></h2>
+                    <div class="row mb-2">
+                        <div class="col">
+                            <div class="card">
+                                <h3 class="card-header" id="validatorResultsHeader"><a href="https://validator.w3.org/" target="validator">Validator</a> Results</h3>
+                                <div class="card-body">
+                                     <p id="validatorSummary"></p>
+                                    <pre class="card-text font-monospace" id="validatorResults">
+                                    </pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col">
                             <div class="alert alert-primary" id="alertPrompt" role="alert">

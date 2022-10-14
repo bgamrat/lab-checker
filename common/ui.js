@@ -1,7 +1,7 @@
 "use strict";
 
 const alerts = {
-    prmpt: document.getElementById("alertPrompt"),
+    prompt: document.getElementById("alertPrompt"),
     success: document.getElementById("alertSuccess"),
     error: document.getElementById("alertError"),
     warning: document.getElementById("alertWarning")

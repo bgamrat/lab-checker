@@ -1,5 +1,6 @@
 "use strict";
 
+import { validate } from './validate.js';
 import { check } from './check.js';
 import { hints } from './hints.js';
 import { clearUI, displayError } from '../common/ui.js';
@@ -28,6 +29,7 @@ const loadFile = () => {
     if (file) {
         if (file.type === "text/html") {
             reader.readAsText(file);
+            validate(file);
         } else {
             displayError("File must be .html");
         }
