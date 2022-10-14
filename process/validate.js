@@ -21,7 +21,7 @@ async function validate(file) {
     formData.append('out', 'text');
     formData.append('content', file);
 
-    await fetch("http://html5.validator.nu/", {
+    await fetch("https://html5.validator.nu/", {
         method: 'POST',
         body: formData
     }).then(response => response.text()).then(text => {
