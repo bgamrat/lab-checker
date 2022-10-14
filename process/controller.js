@@ -1,9 +1,9 @@
 "use strict";
 
-import { validate } from './validate.js';
 import { check } from './check.js';
-import { hints } from './hints.js';
 import { clearUI, displayError } from '../common/ui.js';
+import { hints } from './hints.js';
+import { validate } from './validate.js';
 
 const contentEl = document.getElementById('fileContent');
 const fileEl = document.getElementById('fileInput');
