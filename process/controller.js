@@ -8,16 +8,27 @@ import { validate } from './validate.js';
 const contentEl = document.getElementById('fileContent');
 const fileEl = document.getElementById('fileInput');
 const labIdEl = document.getElementById('labIdInput');
+const viewEl = document.getElementById('view');
+
+viewEl.addEventListener('load', function(e) {
+    // Thanks to: https://stackoverflow.com/a/819455/2182349
+    this.height = this.contentWindow.document.body.scrollHeight + 50; // fudge factor
+});
+
 
 const loadFile = () => {
 
     clearUI();
+
+    viewEl.srcdoc = "";
 
     const [file] = fileEl.files;
     const reader = new FileReader();
 
     reader.addEventListener("load", () => {
         contentEl.innerText = reader.result;
+        viewEl.srcdoc = reader.result;
+        
         // gives the text input value precedence over the filename
         const labId = labIdEl.value.trim() + file.name;
         const lab = check(labId, reader.result);

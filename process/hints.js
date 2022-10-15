@@ -51,14 +51,10 @@ const traverse = (tree, text, depth) => {
     return depth;
 };
 
-
-
 const hints = (lab) => {
-
     let text = [];
     traverse(labs[lab], text, 0);
     contentEl.innerText = text.join('\n');
-
 };
 
 export { hints }

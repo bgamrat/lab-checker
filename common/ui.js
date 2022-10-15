@@ -8,6 +8,7 @@ const alerts = {
 };
 
 const results = document.getElementById("results");
+const hints = document.getElementById("hints");
 const labIdHeading = document.getElementById("labIdHeading");
 const labId = document.getElementById("labId");
 
@@ -19,6 +20,7 @@ const clearUI = () => {
     results.classList.add("d-none");
     labIdHeading.classList.add("d-none");
     labId.textContent = "";
+    hints.textContent = "";
 };
 
 const _display = (el = null, msg = "") => {

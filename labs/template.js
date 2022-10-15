@@ -36,7 +36,12 @@ const labName = {
                         required: false,
                         h2: null,
                     }
-                ]
+                ],
+                picture: {
+                    // repeated elements must be handled as arrays
+                    source: Array(2).fill(null),
+                    img: null
+                }
             }
         }
     }
