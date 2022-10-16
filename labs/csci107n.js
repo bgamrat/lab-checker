@@ -4,6 +4,7 @@ import { lab5 } from './lab5.js';
 import { lab6 } from './lab6.js';
 import { lab8 } from './lab8.js';
 import { lab9 } from './lab9.js';
+import { lab10 } from './lab10.js';
 
 const labs = {
     lab3: lab3,
@@ -11,7 +12,8 @@ const labs = {
     lab5: lab5,
     lab6: lab6,
     lab8: lab8,
-    lab9: lab9
+    lab9: lab9,
+    lab10: lab10
 };
 
 export { labs };
